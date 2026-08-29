@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="ConvenientGathering/ConvenientGathering.csproj" Id="fc0d2ae6-4e56-44fc-8821-d4dd78f24f78" />
+  <Project Path="GeneralQoL/GeneralQoL.csproj" Id="41b3dfd8-e745-4481-a5e0-098b56c0c1d8" />
+  <Project Path="NPCTweaks/NPCTweaks.csproj" Id="7c4802ee-7740-48cb-83ed-c82630feac42" />
+  <Project Path="StaminaTweaks/StaminaTweaks.csproj" Id="f1f42293-e832-4ec5-9b1c-b78f7a4fb672" />
+</Solution>
