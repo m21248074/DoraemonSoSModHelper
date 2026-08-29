@@ -19,6 +19,11 @@ namespace GeneralQoL
 
         public static ConfigEntry<float> timeTickIntervalMultiplier;
         public static ConfigEntry<bool> EnableMaxStack999;
+        public static ConfigEntry<bool> HideScreenBorder;
+        public static ConfigEntry<bool> ImproveDiagonalMovement;
+        public static ConfigEntry<float> DoubleTapInterval;
+        public static ConfigEntry<float> DiagonalReleaseBufferTime;
+
         private static int originalMaxStack = 99;
         private static FieldInfo maxStackField;
 
@@ -26,8 +31,12 @@ namespace GeneralQoL
         {
             Log = base.Logger;
 
-            timeTickIntervalMultiplier = Config.Bind("General.Multipliers", "TimeTickIntervalMultiplier", 1.0f, "Tick 間隔倍率 (數字越大，時間流逝越慢。例如: 2.0 代表間隔加倍、時間變慢 2 倍)");
-            EnableMaxStack999 = Config.Bind("General", "EnableMaxStack999", true, "是否啟用 999 最大堆疊數量 (可隨時開關)");
+            timeTickIntervalMultiplier = Config.Bind("Time.Multipliers", "TimeTickIntervalMultiplier", 1.0f, "Time tick interval multiplier (Higher value = slower time. e.g. 2.0 doubles interval, time flows 2x slower)\nTick 間隔倍率 (數字越大，時間流逝越慢。例如: 2.0 代表間隔加倍、時間變慢 2 倍)");
+            EnableMaxStack999 = Config.Bind("General.Toggles", "EnableMaxStack999", true, "Enable max stack size limit of 999\n是否啟用 999 最大堆疊數量");
+            HideScreenBorder = Config.Bind("General.Toggles", "HideScreenBorder", true, "Hide screen edge white border\n隱藏螢幕四周的白邊");
+            ImproveDiagonalMovement = Config.Bind("Movement.Toggles", "ImproveDiagonalMovement", true, "Improve diagonal movement (Prevent drifting / Lock to farm grid)\n改善斜走效果 (防飄移/鎖定農場網格線)");
+            DoubleTapInterval = Config.Bind("Movement.Settings", "DoubleTapInterval", 0.2f, "Double-tap interval to toggle movement mode (seconds)\n雙擊 Alt 切換移動模式的判定時間 (秒)");
+            DiagonalReleaseBufferTime = Config.Bind("Movement.Settings", "DiagonalReleaseBufferTime", 0.05f, "Diagonal movement release tolerance time (seconds, prevents unwanted directional turning when releasing keys asynchronously)\n斜走鬆開按鍵容錯時間 (秒，避免一先一後放開時角色突兀轉向)");
 
             maxStackField = typeof(Item).GetField("MAX_STACK", BindingFlags.Static | BindingFlags.Public);
 
@@ -56,12 +65,12 @@ namespace GeneralQoL
             if (EnableMaxStack999.Value)
             {
                 maxStackField.SetValue(null, 999);
-                Logger.LogInfo($"已設定最大堆疊數為 999");
+                Logger.LogInfo($"Set max stack size to 999 / 已設定最大堆疊數為 999");
             }
             else
             {
                 maxStackField.SetValue(null, originalMaxStack);
-                Logger.LogInfo($"已還原最大堆疊數為原版預設值 {originalMaxStack}");
+                Logger.LogInfo($"Restored max stack size to default ({originalMaxStack}) / 已還原最大堆疊數為原版預設值 {originalMaxStack}");
             }
         }
 

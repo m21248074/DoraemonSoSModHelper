@@ -14,6 +14,7 @@ namespace GeneralQoL
         [HarmonyPostfix]
         public static void Update_Postfix()
         {
+            if (!Plugin.ImproveDiagonalMovement.Value) return;
             if (!UnityEngine.Input.anyKeyDown) return;
 
             var keySettings = SingletonMonoBehaviour<UserManager>.Instance?.Option?.KeySettings;
@@ -23,7 +24,7 @@ namespace GeneralQoL
 
             if (UnityEngine.Input.GetKeyDown(targetKey))
             {
-                if (UnityEngine.Time.time - lastTime < 0.2f)
+                if (UnityEngine.Time.time - lastTime < Plugin.DoubleTapInterval.Value)
                 {
                     isChangeDirection = !isChangeDirection;
 
@@ -83,7 +84,7 @@ namespace GeneralQoL
                     isInclinedWalk = false;
                     mLStickInputRecord = Vector2.zero;
                 }
-                else if (UnityEngine.Time.time - lastTime2 < 2f)
+                else if (UnityEngine.Time.time - lastTime2 < Plugin.DiagonalReleaseBufferTime.Value)
                 {
                     ___mLStickInput = mLStickInputRecord;
                 }

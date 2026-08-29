@@ -9,6 +9,8 @@ namespace GeneralQoL
         [HarmonyPrefix]
         public static void OnRenderImage_Prefix(ref float ___mAlphaBlendIntensity)
         {
+            if (!Plugin.HideScreenBorder.Value)
+                return;
             ___mAlphaBlendIntensity = 0f;
         }
     }
