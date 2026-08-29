@@ -27,11 +27,11 @@ namespace StaminaTweaks
         {
             Log = base.Logger;
 
-            isShowStamina = Config.Bind("General.Toggles", "IsShowStamina", true, "是否顯示體力");
-            showStaminaPrefixText = Config.Bind("General.Strings", "ShowStaminaPrefixText", "Stamina: ", "顯示體力的前綴文字");
-            staminaConsumeMult = Config.Bind("General.Multipliers", "StaminaConsumeMult", 1.0f, "體力消耗倍數");
-            ignoreLateSleepStaminaPenalty = Config.Bind("General.Toggles", "IgnoreLateSleepStaminaPenalty", true, "是否忽略晚睡體力懲罰");
-            enableBetterNap = Config.Bind("General.Toggles", "EnableBetterNap", true, "是否啟用更好的午睡 (每小時10體力+背包等級*20)");
+            isShowStamina = Config.Bind("General.Toggles", "IsShowStamina", true, "Show stamina bar\n是否顯示體力");
+            showStaminaPrefixText = Config.Bind("General.Strings", "ShowStaminaPrefixText", "Stamina: ", "Prefix text for stamina display\n顯示體力的前綴文字");
+            staminaConsumeMult = Config.Bind("General.Multipliers", "StaminaConsumeMult", 1.0f, "Stamina consumption multiplier\n體力消耗倍數");
+            ignoreLateSleepStaminaPenalty = Config.Bind("General.Toggles", "IgnoreLateSleepStaminaPenalty", true, "Ignore late sleep stamina penalty\n是否忽略晚睡體力懲罰");
+            enableBetterNap = Config.Bind("General.Toggles", "EnableBetterNap", true, "Enable better nap (10 stamina/hr + backpack level * 20)\n是否啟用更好的午睡 (每小時10體力+背包等級*20)");
 
             var harmony = new Harmony(PLUGIN_GUID);
             harmony.PatchAll(Assembly.GetExecutingAssembly());

@@ -21,7 +21,7 @@ namespace ConvenientGathering
         {
             Log = base.Logger;
 
-            EnableFixedHoleIndex = Config.Bind("Mine.Toggles", "EnableFixedHoleIndex", true, "是否啟用固定樓梯/落穴位置");
+            EnableFixedHoleIndex = Config.Bind("Mine.Toggles", "EnableFixedHoleIndex", true, "Enable fixed stairs/pit hole locations\n是否啟用固定樓梯/落穴位置");
 
             var harmony = new Harmony(PLUGIN_GUID);
             harmony.PatchAll(Assembly.GetExecutingAssembly());
